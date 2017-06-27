@@ -1,9 +1,10 @@
-package com.fruitgrower.fruitgrower;
+package com.fruitgrower.fruitgrower.view.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.fruitgrower.fruitgrower.R;
+
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

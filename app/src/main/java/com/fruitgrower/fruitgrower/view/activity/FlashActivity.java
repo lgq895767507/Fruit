@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.WindowManager;
 
 import com.fruitgrower.fruitgrower.R;
+import com.fruitgrower.fruitgrower.view.utils.SharePreferenceUtils;
 
 import java.lang.ref.WeakReference;
 
@@ -27,7 +29,12 @@ public class FlashActivity extends BaseActivity {
         // get rid of status bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_flash);
-        new FlashHandler(this).sendEmptyMessageDelayed(WHAT_INTENT2LOGIN, SPLASH_DUR_TIME);
+        if (!TextUtils.isEmpty(SharePreferenceUtils.getLoginUserName(this)) && !TextUtils.isEmpty(SharePreferenceUtils.getLoginPassword(this))){
+            //作为判断是否已经登录过，若登陆过则不需再次注册
+            new FlashHandler(this).sendEmptyMessageDelayed(WHAT_INTENT2MAIN, SPLASH_DUR_TIME);
+        }else {
+            new FlashHandler(this).sendEmptyMessageDelayed(WHAT_INTENT2LOGIN, SPLASH_DUR_TIME);
+        }
     }
 
     private class FlashHandler extends Handler {

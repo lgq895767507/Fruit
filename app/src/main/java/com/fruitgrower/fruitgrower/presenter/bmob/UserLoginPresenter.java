@@ -4,6 +4,7 @@ import android.widget.Toast;
 
 import com.fruitgrower.fruitgrower.FruitApplication;
 import com.fruitgrower.fruitgrower.model.bmob.UserLogin;
+import com.fruitgrower.fruitgrower.view.utils.SharePreferenceUtils;
 import com.fruitgrower.fruitgrower.view.utils.ToastUtils;
 import com.orhanobut.logger.Logger;
 
@@ -19,7 +20,7 @@ public class UserLoginPresenter implements IUserLoginPresenter{
 
 
     @Override
-    public void register(String username, String password) {
+    public void register(final String username, final String password) {
         UserLogin userLogin = new UserLogin();
         userLogin.setUsername(username);
         userLogin.setEmail(username);
@@ -28,6 +29,8 @@ public class UserLoginPresenter implements IUserLoginPresenter{
             @Override
             public void done(Object s, BmobException e) {
                 if(e == null){
+                    SharePreferenceUtils.setLoginUserName(FruitApplication.getContext(), username);
+                    SharePreferenceUtils.setLoginPassWord(FruitApplication.getContext(), password);
                     ToastUtils.showToast(FruitApplication.getContext(), "注册成功:", Toast.LENGTH_SHORT);
                 }else{
                     Logger.i("注册失败");

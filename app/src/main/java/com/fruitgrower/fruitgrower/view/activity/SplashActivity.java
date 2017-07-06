@@ -17,7 +17,7 @@ import java.lang.ref.WeakReference;
  * Created by lgq on 2017/6/27.
  */
 
-public class FlashActivity extends BaseActivity {
+public class SplashActivity extends BaseActivity {
 
     private static final int WHAT_INTENT2LOGIN = 1;
     private static final int WHAT_INTENT2MAIN = 2;
@@ -40,7 +40,7 @@ public class FlashActivity extends BaseActivity {
     private class FlashHandler extends Handler {
         WeakReference<Activity> weakReference;
 
-        FlashHandler(FlashActivity activity) {
+        FlashHandler(SplashActivity activity) {
             weakReference = new WeakReference<Activity>(activity);
         }
 

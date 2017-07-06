@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.fruitgrower.fruitgrower.view.utils.ConstantStringUtils;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 import cn.bmob.v3.Bmob;
 
@@ -28,6 +30,16 @@ public class FruitApplication extends Application{
     private void init() {
         mContext = this;
         Bmob.initialize(this, ConstantStringUtils.APP_KEY, "fruit");
+        //initialize logger
+        Logger.addLogAdapter(new AndroidLogAdapter(){
+            @Override
+            public boolean isLoggable(int priority, String tag) {
+                //签名打包后的日志便不显示
+                return BuildConfig.DEBUG;
+            }
+        });
+        Logger.i("init application!");
+        Logger.d("init application!!!");
     }
 
     public static Context getContext(){

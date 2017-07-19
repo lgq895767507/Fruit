@@ -3,25 +3,20 @@ package com.fruitgrower.fruitgrower.view.activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.fruitgrower.fruitgrower.R;
+import com.fruitgrower.fruitgrower.view.fragment.FragmentController;
 import com.fruitgrower.fruitgrower.view.utils.BottomNavigationViewHelper;
-import com.fruitgrower.fruitgrower.view.utils.ShareUtils;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
@@ -31,20 +26,10 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
-      //  drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -56,6 +41,18 @@ public class MainActivity extends AppCompatActivity
             BottomNavigationViewHelper.disableShiftMode(navigation);
         }
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+       /*  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });*/
+        //load fragment
+        initFragment();
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -67,9 +64,9 @@ public class MainActivity extends AppCompatActivity
                 case R.id.navigation_home:
                   //  mTextMessage.setText(R.string.title_home);
                     return true;
-                case R.id.navigation_search:
+              /*  case R.id.navigation_search:
                  //   mTextMessage.setText(R.string.title_dashboard);
-                    return true;
+                    return true;*/
                 case R.id.navigation_message:
                   //  mTextMessage.setText(R.string.title_notifications);
                     return true;
@@ -80,6 +77,11 @@ public class MainActivity extends AppCompatActivity
         }
 
     };
+
+    private void initFragment(){
+        FragmentController mFragmentController = FragmentController.getInstance(this, R.id.content);
+        mFragmentController.showFragment(0);
+    }
 
 
     @Override
@@ -108,7 +110,8 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            ShareUtils.shareLink(this, "www.baidu.com");
+          //  ShareUtils.shareLink(this, "www.baidu.com");
+            intent2Activity(PublishActivity.class);
             return true;
         }
 
@@ -138,5 +141,11 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        FragmentController.onDestroy();
+        super.onDestroy();
     }
 }

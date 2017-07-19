@@ -38,8 +38,6 @@ public class FruitApplication extends Application{
                 return BuildConfig.DEBUG;
             }
         });
-        Logger.i("init application!");
-        Logger.d("init application!!!");
     }
 
     public static Context getContext(){

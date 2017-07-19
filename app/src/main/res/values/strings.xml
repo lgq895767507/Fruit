@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FruitGrower</string>
+    <string name="app_name">小心脏</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
@@ -18,12 +18,17 @@
     <string name="classify_page">定位</string>
     <string name="message_page">消息</string>
     <string name="owner_page">我的</string>
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_main2">小心脏</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="share_url_label">Share URL</string>
-
+    <string name="publish_message">发布消息</string>
+    <string name="edit_content_hint">此刻你的想法是...</string>
+    <string name="publish_button">发送</string>
+    <string name="content_no_null">发布的内容不能为空!</string>
+    <string name="confirm">确定</string>
+    <string name="text_content_one">还能输入%d个字</string>
 
     <string name="action_settings">Settings</string>
 </resources>

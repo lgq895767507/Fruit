@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.WindowManager;
 
 import com.fruitgrower.fruitgrower.R;
@@ -18,6 +19,8 @@ import java.lang.ref.WeakReference;
  */
 
 public class SplashActivity extends BaseActivity {
+
+    private final String TAG = this.getClass().getSimpleName();
 
     private static final int WHAT_INTENT2LOGIN = 1;
     private static final int WHAT_INTENT2MAIN = 2;

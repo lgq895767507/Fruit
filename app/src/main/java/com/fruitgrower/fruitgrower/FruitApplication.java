@@ -3,7 +3,7 @@ package com.fruitgrower.fruitgrower;
 import android.app.Application;
 import android.content.Context;
 
-import com.fruitgrower.fruitgrower.view.utils.ConstantStringUtils;
+import com.fruitgrower.fruitgrower.view.utils.ConstantUtils;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
@@ -29,7 +29,7 @@ public class FruitApplication extends Application{
 
     private void init() {
         mContext = this;
-        Bmob.initialize(this, ConstantStringUtils.APP_KEY, "fruit");
+        Bmob.initialize(this, ConstantUtils.APP_KEY, "fruit");
         //initialize logger
         Logger.addLogAdapter(new AndroidLogAdapter(){
             @Override

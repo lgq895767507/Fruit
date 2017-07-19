@@ -5,6 +5,5 @@
 * 4.可作为开展项目基础架构
 
 ## LOOK
----
 
 ![image](https://github.com/lgq895767507/Fruit/raw/master/611FC6EBD427CA1F84E57130399A4A40.jpg)
